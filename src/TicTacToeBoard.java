@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class TicTacToeBoard {
 
     private static TicTacToeButton[][] board = new TicTacToeButton[3][3];
-    private static int numMove = 0;
     private static String player = "X";
 
     public static void createBoard(JPanel game) {
@@ -15,7 +14,6 @@ public class TicTacToeBoard {
                 board[row][col] = new TicTacToeButton(row, col);
                 board[row][col].setText(" ");
                 board[row][col].setFont(new Font(Font.SERIF, Font.PLAIN, 30));
-                numMove++;
                 game.add(board[row][col]);
             }
     }
@@ -53,15 +51,11 @@ public class TicTacToeBoard {
                             player.setText(String.valueOf(TicTacToeBoard.player));
                             TicTacToeGame.updateGame(String.valueOf(TicTacToeBoard.player), player.getRow(), player.getCol());
 
-                            numMove++;
                             updatePlayer(game);
 
-                            if(numMove>=5){
-                                winGame(game);
-                            }
-                            if(numMove>=7) {
-                                tieGame();
-                            }
+                            winGame(game);
+                            tieGame();
+
                         }
                     }
                 });
